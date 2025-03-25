@@ -1,6 +1,6 @@
 import numpy as np
 
-def newton(fonction_racine, derivee_fonction_racine, x0, tolr, nmax):
+def newton(fonction_racine, derivee_fonction_racine, x0, tolr=1e-10, nmax=100):
     length_x0 = len(x0)
     if length_x0 != 1:
         iterations = np.array([x0]).reshape(length_x0,1)
