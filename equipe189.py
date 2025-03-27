@@ -15,16 +15,15 @@ from newton import newton
 # Partie 2 : Matrice de Vandermonde modifiée
 
 def vandermonde_modifie(points):
-    """
-    Génère la matrice de Vandermonde modifiée pour un ensemble de points donnés.
-    """
-    n = len(points)
+    n = len(points) - 1  # Correction ici
     V = np.zeros((n+1, n+1))
     
     for i in range(n+1):
         for j in range(n+1):
             V[i, j] = points[i]**(n-j)
+    
     return V
+
 
 # Q2a - Étude du conditionnement de la matrice de Vandermonde (Figure 3)
 def plot_conditionnement():
