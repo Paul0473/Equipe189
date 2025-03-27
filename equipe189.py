@@ -43,9 +43,73 @@ for name, data in datasets.items():
     print(det_J)
 
 # Q1c
+err_A = []
+err_B = []
+err_C = []
+
+for name, data in datasets.items():
+    def fonction_racine(x):
+        return f(x, data)
+    
+    def derivee_fonction_racine(x):
+        return J(x, data)
+
+    iterates = newton(fonction_racine, derivee_fonction_racine, x0, tol, Nmax)
+
+    err = [np.linalg.norm(iterates[:, i+1] - iterates[:, i]) for i in range(iterates.shape[1] - 1)]
+    
+    if name == "A":
+        err_A = err
+    elif name == "B":
+        err_B = err
+    else:
+        err_C = err
+
+plt.figure(figsize=(8, 6))
+
+plt.semilogy(err_A, label='Jeu de données A', color='r')
+plt.semilogy(err_B, label='Jeu de données B', color='g')
+plt.semilogy(err_C, label='Jeu de données C', color='b')
+
+plt.xlabel('Nombre d\'itérations')
+plt.ylabel('Erreur \(E_n\)')
+plt.title('Figure 1: Erreur en échelle semilogarithmique pour chaque jeu de données')
+plt.legend()
+
+plt.grid(True)
+plt.show()
 
 
 # Q1d
+fig, ax = plt.subplots(figsize=(8, 8))
+
+ax.scatter(data_A[:, 0], data_A[:, 1], label="Jeu A", color='r')
+ax.scatter(data_B[:, 0], data_B[:, 1], label="Jeu B", color='g')
+ax.scatter(data_C[:, 0], data_C[:, 1], label="Jeu C", color='b')
+
+for name, data in datasets.items():
+    def fonction_racine(x):
+        return f(x, data)
+    
+    def derivee_fonction_racine(x):
+        return J(x, data)
+
+    iterates = newton(fonction_racine, derivee_fonction_racine, x0, tol, Nmax)
+    solution = iterates[:, -1]
+
+    h, k, r = solution
+    circle = plt.Circle((h, k), r, color='black', fill=False, linestyle='--', linewidth=1.5)
+    ax.add_patch(circle)
+
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+ax.set_title('Figure 2: Cercles correspondant aux solutions trouvées')
+ax.legend()
+
+plt.grid(True)
+plt.axis('equal')
+plt.show()
+
 
 
 
