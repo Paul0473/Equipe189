@@ -4,13 +4,14 @@ from newton import newton
 
 # Partie 1 : Recherche des racines avec Newton
 # Q1b - Implémentation et tests de la méthode de Newton
-# (Ajoutez ici votre code d'initialisation et de test pour Newton)
+
 
 # Q1c - Tracé de la convergence (Figure 1)
-# (Ajoutez ici le code pour tracer l'évolution des itérations)
+
 
 # Q1d - Comparaison des erreurs (Figure 2)
-# (Ajoutez ici le code pour afficher les erreurs de convergence)
+
+
 
 # Partie 2 : Matrice de Vandermonde modifiée
 
