@@ -2,16 +2,22 @@ import numpy as np
 import matplotlib.pyplot as plt 
 from newton import newton
 
-#Q1b
+# Partie 1 : Recherche des racines avec Newton
+# Q1b - Implémentation et tests de la méthode de Newton
+# (Ajoutez ici votre code d'initialisation et de test pour Newton)
 
-#Q1c
-#figure 1
+# Q1c - Tracé de la convergence (Figure 1)
+# (Ajoutez ici le code pour tracer l'évolution des itérations)
 
-#Q1d
-#figure 2
+# Q1d - Comparaison des erreurs (Figure 2)
+# (Ajoutez ici le code pour afficher les erreurs de convergence)
 
-#Q2context
+# Partie 2 : Matrice de Vandermonde modifiée
+
 def vandermonde_modifie(points):
+    """
+    Génère la matrice de Vandermonde modifiée pour un ensemble de points donnés.
+    """
     n = len(points)
     V = np.zeros((n+1, n+1))
     
@@ -20,8 +26,7 @@ def vandermonde_modifie(points):
             V[i, j] = points[i]**(n-j)
     return V
 
-#Q2a
-#figure3
+# Q2a - Étude du conditionnement de la matrice de Vandermonde (Figure 3)
 def plot_conditionnement():
     n_values = range(10, 151, 10)
     cond_values = []
@@ -41,8 +46,7 @@ def plot_conditionnement():
     plt.title('Conditionnement de la matrice de Vandermonde modifiée')
     plt.show()
 
-#Q2b
-#figure4
+# Q2b - Régression du conditionnement (Figure 4)
 def regression_conditionnement():
     n_values = range(10, 151, 10)
     cond_values = []
@@ -69,8 +73,7 @@ def regression_conditionnement():
     plt.title('Régression du conditionnement de V(P)')
     plt.show()
 
-#Q2c
-#figure5
+# Q2c - Erreur relative dans la résolution du système (Figure 5)
 def erreur_relative():
     n_values = range(30, 201)
     erreurs = []
@@ -88,13 +91,14 @@ def erreur_relative():
     
     plt.figure()
     plt.semilogy(n_values, erreurs, label='Erreur relative')
-    plt.semilogy(n_values, (np.finfo(np.float64).eps) * (b**np.array(n_values)), label='Erreur machine', linestyle='--')
+    plt.semilogy(n_values, (np.finfo(np.float64).eps) * (2**np.array(n_values)), label='Erreur machine', linestyle='--')
     plt.xlabel('n')
     plt.ylabel('Erreur relative')
     plt.legend()
     plt.title('Erreur relative pour la résolution du système Vandermonde modifié')
     plt.show()
 
+# Exécution des fonctions
 plot_conditionnement()
 regression_conditionnement()
 erreur_relative()
